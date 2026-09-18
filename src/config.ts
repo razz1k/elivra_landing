@@ -1,6 +1,6 @@
 export const site = {
   name: 'Лена Разумная',
-  role: 'Психосоматолог • консультант',
+  role: 'психолог • консультант',
   telegramUrl: 'https://t.me/ElenaIvRa',
   maxUrl: 'https://max.ru/u/f9LHodD0cOKPmfwP-uT_n7xVTxKUe7tFKNdQ042X3Qfa7Pl1y7bcANuthRI',
   whatsappUrl: 'https://wa.me/79054542723',

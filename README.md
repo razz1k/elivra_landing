@@ -1,6 +1,6 @@
 # Лена Разумная — лендинг
 
-Одностраничный personal brand лендинг практикующего психосоматолога. Стек: Vite + vanilla TypeScript.
+Одностраничный personal brand лендинг практикующего психолога. Стек: Vite + vanilla TypeScript.
 
 ## Быстрый старт
 
