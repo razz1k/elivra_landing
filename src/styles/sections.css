@@ -856,6 +856,12 @@ body:has(.nav-toggle-input:checked) .mobile-nav {
   color: var(--color-muted);
 }
 
+.site-footer__credit a {
+  color: var(--color-terracotta-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .site-footer__bottom a {
   display: inline-flex;
   align-items: center;
