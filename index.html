@@ -26,11 +26,12 @@
     />
     <meta name="twitter:image" content="/og-image.svg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" as="image" href="/images/hero-portrait.svg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/hero-portrait.png" fetchpriority="high" />
     <style>
       :root {
         --color-ivory: #f7f3ee;
         --color-beige: #e9ded2;
+        --color-sage: #a8b5a0;
         --color-sage-deep: #55614e;
         --color-graphite: #292827;
         --color-terracotta: #855746;
@@ -39,6 +40,7 @@
         --color-line: rgba(41, 40, 39, 0.12);
         --font-serif: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
         --font-sans: Manrope, system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --font-hand: Caveat, cursive;
         --header-h: 72px;
         --container: 1120px;
       }
@@ -95,6 +97,15 @@
         line-height: 1.15;
         letter-spacing: -0.02em;
         font-size: clamp(2.4rem, 5.2vw, 4.25rem);
+        color: var(--color-graphite);
+      }
+
+      h2 {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        font-size: clamp(2rem, 3.8vw, 3.1rem);
         color: var(--color-graphite);
       }
 
@@ -254,16 +265,93 @@
 
       .hero__frame {
         position: relative;
+        width: 100%;
         border-radius: 32px;
         overflow: hidden;
-        aspect-ratio: 4 / 5;
+        aspect-ratio: 962 / 859;
         background: var(--color-beige);
       }
 
       .hero__frame img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center 28%;
+      }
+
+      .section {
+        padding-block: 6rem;
+        position: relative;
+      }
+
+      .section__eyebrow {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--color-sage-deep);
+        margin-bottom: 1rem;
+      }
+
+      .section__title {
+        margin-bottom: 1.5rem;
+        max-width: 18ch;
+      }
+
+      .grid-2 {
+        display: grid;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .about__photo {
+        position: relative;
+      }
+
+      .about__frame {
+        width: 100%;
+        border-radius: 32px;
+        overflow: hidden;
+        aspect-ratio: 1 / 1;
+        background: var(--color-beige);
+      }
+
+      .about__frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .about__hand {
+        margin-top: 1.25rem;
+        text-align: center;
+      }
+
+      .handwritten {
+        font-family: var(--font-hand);
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        color: var(--color-terracotta);
+        letter-spacing: 0.02em;
+      }
+
+      .line-accent {
+        width: 48px;
+        height: 1px;
+        background: var(--color-sage);
+        margin-block: 1rem;
+      }
+
+      .about__text p + p {
+        margin-top: 1rem;
+      }
+
+      .about__text strong {
+        color: var(--color-graphite);
+        font-weight: 500;
       }
 
       .btn {
@@ -314,6 +402,11 @@
         .hero__grid {
           grid-template-columns: 1.05fr 0.95fr;
           gap: 4rem;
+        }
+
+        .grid-2 {
+          grid-template-columns: 1fr 1fr;
+          gap: 6rem;
         }
       }
 
@@ -428,11 +521,10 @@
             <div class="hero__deco-line" aria-hidden="true"></div>
             <div class="hero__frame">
               <img
-                src="/images/hero-portrait.svg"
+                src="/images/hero-portrait.png"
                 alt="Портрет Лены Разумной — спокойный образ в тёплых нейтральных тонах"
-                width="900"
-                height="1100"
-                data-parallax
+                width="962"
+                height="859"
                 fetchpriority="high"
               />
             </div>
@@ -445,13 +537,12 @@
           <div class="about__photo reveal">
             <div class="about__frame">
               <img
-                src="/images/about-portrait.svg"
-                alt="Лена Разумная в мягком естественном свете"
-                width="800"
-                height="1000"
+                src="/images/about-portrait.jpg"
+                alt="Лена Разумная с сертификатами курса «Открытая психосоматика»"
+                width="960"
+                height="960"
                 loading="lazy"
                 decoding="async"
-                data-parallax
               />
             </div>
             <p class="about__hand handwritten">бережно • честно • вместе</p>
@@ -743,18 +834,112 @@
         </div>
       </section>
 
-      <section id="formats" class="section" aria-labelledby="formats-title">
+      <section
+        id="formats"
+        class="section"
+        aria-labelledby="formats-title"
+        data-cursor-stage
+      >
         <div class="container">
           <div class="section__header reveal">
             <p class="section__eyebrow">Формат</p>
             <h2 id="formats-title" class="section__title">Формат, который подходит вам</h2>
           </div>
-          <div class="formats__grid formats__grid--single">
+          <div class="formats__grid">
             <article class="format-card reveal">
               <p class="format-card__label">Онлайн</p>
               <h3 class="format-card__title">ОНЛАЙН</h3>
               <p>Консультации из любой точки, где вам комфортно и спокойно.</p>
             </article>
+            <div class="formats__visual reveal reveal-delay-1" aria-hidden="true">
+              <svg
+                class="call-ui"
+                viewBox="0 0 420 300"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="12"
+                  y="12"
+                  width="396"
+                  height="276"
+                  rx="28"
+                  fill="#FFFCFA"
+                  stroke="rgba(41,40,39,0.12)"
+                />
+                <rect x="28" y="28" width="364" height="28" rx="10" fill="#E9DED2" />
+                <circle cx="48" cy="42" r="4" fill="#C98F7B" opacity="0.7" />
+                <circle cx="64" cy="42" r="4" fill="#A8B5A0" opacity="0.7" />
+                <circle cx="80" cy="42" r="4" fill="#855746" opacity="0.45" />
+                <rect x="110" y="36" width="180" height="12" rx="6" fill="#F7F3EE" />
+
+                <g data-follow-cursor data-follow-strength="8" class="call-ui__layer">
+                  <rect x="28" y="72" width="250" height="150" rx="18" fill="#E9DED2" />
+                  <circle cx="153" cy="132" r="28" fill="#A8B5A0" opacity="0.55" />
+                  <path
+                    d="M118 196c8-22 26-34 35-34s27 12 35 34"
+                    fill="#A8B5A0"
+                    opacity="0.4"
+                  />
+                  <rect x="44" y="196" width="72" height="10" rx="5" fill="#F7F3EE" />
+                  <g class="call-ui__speaker" data-sound-meter transform="translate(246 84)">
+                    <path
+                      d="M3 7.5H6.2L11 3.5V16.5L6.2 12.5H3V7.5Z"
+                      fill="#55614E"
+                      opacity="0.75"
+                    />
+                    <path
+                      class="call-ui__wave"
+                      data-sound-wave="1"
+                      d="M13.5 6.2C15.2 7.7 15.2 12.3 13.5 13.8"
+                      stroke="#55614E"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      fill="none"
+                    />
+                    <path
+                      class="call-ui__wave"
+                      data-sound-wave="2"
+                      d="M16.8 4C19.8 6.6 19.8 13.4 16.8 16"
+                      stroke="#55614E"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      fill="none"
+                    />
+                  </g>
+                </g>
+
+                <g data-follow-cursor data-follow-strength="16" class="call-ui__layer">
+                  <rect
+                    x="292"
+                    y="72"
+                    width="100"
+                    height="78"
+                    rx="14"
+                    fill="#D8CBBC"
+                    stroke="rgba(41,40,39,0.08)"
+                  />
+                  <circle cx="342" cy="100" r="14" fill="#855746" opacity="0.45" />
+                  <path
+                    d="M324 136c4-10 12-16 18-16s14 6 18 16"
+                    fill="#855746"
+                    opacity="0.35"
+                  />
+                </g>
+
+                <g data-follow-cursor data-follow-strength="6" class="call-ui__layer">
+                  <rect x="28" y="240" width="364" height="32" rx="16" fill="#F7F3EE" />
+                  <circle cx="168" cy="256" r="10" fill="#A8B5A0" opacity="0.55" />
+                  <circle cx="210" cy="256" r="10" fill="#855746" opacity="0.7" />
+                  <circle cx="252" cy="256" r="10" fill="#C98F7B" opacity="0.55" />
+                </g>
+
+                <g data-follow-cursor data-follow-strength="22" class="call-ui__layer">
+                  <circle cx="318" cy="214" r="18" fill="#FFFCFA" stroke="rgba(41,40,39,0.12)" />
+                  <circle cx="318" cy="214" r="5" fill="#855746" />
+                </g>
+              </svg>
+            </div>
           </div>
           <div class="formats__cta reveal">
             <a class="btn btn--primary" href="https://t.me/PLACEHOLDER" data-contact="telegram"

@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 const APP_ENTRY = resolve(import.meta.dirname, 'src/main.ts')
 const LOADER_MARKER = '<!-- deferred-app -->'
@@ -82,7 +83,23 @@ function deferredAppLoader(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [deferredAppLoader()],
+  plugins: [
+    deferredAppLoader(),
+    ViteImageOptimizer({
+      includePublic: true,
+      logStats: true,
+      exclude: /og-image\.svg$/i,
+      png: {
+        quality: 80,
+      },
+      jpeg: {
+        quality: 80,
+      },
+      jpg: {
+        quality: 80,
+      },
+    }),
+  ],
   build: {
     modulePreload: false,
     rollupOptions: {

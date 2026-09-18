@@ -40,8 +40,8 @@ function boot(): void {
   initNav()
   initReveal()
   void import('./styles/caveat.css')
-  void import('./modules/parallax').then((parallax) => {
-    parallax.initParallax()
+  void import('./modules/cursor-follow').then((module) => {
+    module.initCursorFollow()
   })
 }
 
