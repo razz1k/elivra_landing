@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && scp -r ./elivra razz1k.npm:/opt/npmplus/html/"
   },
   "devDependencies": {
     "sharp": "^0.35.4",

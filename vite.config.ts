@@ -101,6 +101,7 @@ export default defineConfig({
     }),
   ],
   build: {
+    outDir: 'elivra',
     modulePreload: false,
     rollupOptions: {
       input: {
