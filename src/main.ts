@@ -10,6 +10,9 @@ function applyContactLinks(): void {
       case 'telegram':
         link.href = site.telegramUrl
         break
+      case 'max':
+        link.href = site.maxUrl
+        break
       case 'whatsapp':
         link.href = site.whatsappUrl
         break
@@ -28,7 +31,7 @@ function applyContactLinks(): void {
         break
     }
 
-    if (key === 'telegram' || key === 'whatsapp' || key === 'instagram') {
+    if (key === 'telegram' || key === 'max' || key === 'whatsapp' || key === 'instagram') {
       link.target = '_blank'
       link.rel = 'noopener noreferrer'
     }
