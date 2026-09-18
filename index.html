@@ -6,7 +6,7 @@
     <title>Лена Разумная — психосоматолог и консультант</title>
     <meta
       name="description"
-      content="Бережные консультации по психосоматике. Помогаю исследовать связь эмоций, внутренних конфликтов и телесных ощущений. Онлайн и офлайн."
+      content="Бережные консультации по психосоматике. Помогаю исследовать связь эмоций, внутренних конфликтов и телесных ощущений. Онлайн."
     />
     <link rel="canonical" href="https://example.com/" />
     <meta property="og:type" content="website" />
@@ -14,7 +14,7 @@
     <meta property="og:title" content="Лена Разумная — психосоматолог и консультант" />
     <meta
       property="og:description"
-      content="Бережные консультации по психосоматике. Онлайн и офлайн. Личный бренд практикующего специалиста."
+      content="Бережные консультации по психосоматике. Онлайн. Личный бренд практикующего специалиста."
     />
     <meta property="og:url" content="https://example.com/" />
     <meta property="og:image" content="/og-image.svg" />
@@ -22,18 +22,343 @@
     <meta name="twitter:title" content="Лена Разумная — психосоматолог и консультант" />
     <meta
       name="twitter:description"
-      content="Бережные консультации по психосоматике. Онлайн и офлайн."
+      content="Бережные консультации по психосоматике. Онлайн."
     />
     <meta name="twitter:image" content="/og-image.svg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" as="image" href="/images/hero-portrait.svg" fetchpriority="high" />
+    <style>
+      :root {
+        --color-ivory: #f7f3ee;
+        --color-beige: #e9ded2;
+        --color-sage-deep: #55614e;
+        --color-graphite: #292827;
+        --color-terracotta: #855746;
+        --color-white: #fffcf9;
+        --color-muted: #5a5650;
+        --color-line: rgba(41, 40, 39, 0.12);
+        --font-serif: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+        --font-sans: Manrope, system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --header-h: 72px;
+        --container: 1120px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-padding-top: calc(var(--header-h) + 1rem);
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        font-size: 1.0625rem;
+        line-height: 1.65;
+        color: var(--color-graphite);
+        background: var(--color-ivory);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        font-size: clamp(2.4rem, 5.2vw, 4.25rem);
+        color: var(--color-graphite);
+      }
+
+      p {
+        color: var(--color-muted);
+      }
+
+      .container {
+        width: min(100% - 2.5rem, var(--container));
+        margin-inline: auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: var(--header-h);
+        background: rgba(247, 243, 238, 0.94);
+      }
+
+      .site-header__inner {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-family: var(--font-serif);
+        font-size: 1.35rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: var(--color-graphite);
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .nav-toggle {
+        width: 2.75rem;
+        height: 2.75rem;
+        flex-shrink: 0;
+        border-radius: 50%;
+        border: 1px solid rgba(41, 40, 39, 0.22);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .nav-toggle span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        border-radius: 1px;
+        background: var(--color-graphite);
+      }
+
+      .nav-toggle-input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .mobile-nav {
+        position: fixed;
+        inset: var(--header-h) 0 0 0;
+        z-index: 90;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 2rem;
+        background: rgba(247, 243, 238, 0.98);
+        transform: translateX(100%);
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      body:has(.nav-toggle-input:checked) {
+        overflow: hidden;
+      }
+
+      body:has(.nav-toggle-input:checked) .mobile-nav {
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      body:has(.nav-toggle-input:checked) .nav-toggle span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+
+      body:has(.nav-toggle-input:checked) .nav-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+
+      body:has(.nav-toggle-input:checked) .nav-toggle span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      .hero {
+        position: relative;
+        padding: 2rem 0 4rem;
+        overflow: hidden;
+      }
+
+      .hero__grid {
+        display: grid;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .hero__eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--color-sage-deep);
+        font-weight: 500;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero__title {
+        margin-bottom: 1.25rem;
+        max-width: 12ch;
+      }
+
+      .hero__lead {
+        font-size: 1.1rem;
+        max-width: 38ch;
+        margin-bottom: 1.75rem;
+      }
+
+      .hero__brand {
+        margin-bottom: 1.75rem;
+      }
+
+      .hero__name {
+        font-family: var(--font-serif);
+        font-size: clamp(1.75rem, 3vw, 2.25rem);
+        font-weight: 500;
+        color: var(--color-graphite);
+        margin-bottom: 0.35rem;
+      }
+
+      .hero__meta {
+        color: var(--color-muted);
+        font-size: 0.98rem;
+        line-height: 1.5;
+      }
+
+      .hero__frame {
+        position: relative;
+        border-radius: 32px;
+        overflow: hidden;
+        aspect-ratio: 4 / 5;
+        background: var(--color-beige);
+      }
+
+      .hero__frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.25rem;
+        padding: 0.85rem 1.75rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+      }
+
+      .btn--primary {
+        background: var(--color-terracotta);
+        color: var(--color-white);
+        box-shadow: 0 8px 24px rgba(133, 87, 70, 0.28);
+      }
+
+      .btn--secondary {
+        background: transparent;
+        color: var(--color-graphite);
+        border: 1px solid var(--color-line);
+      }
+
+      .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+      }
+
+      .sticky-cta {
+        display: none;
+      }
+
+      .blob,
+      .hero__deco-line,
+      .hero__deco-ring {
+        display: none;
+      }
+
+      @media (min-width: 900px) {
+        .hero {
+          padding-block: 4rem 6rem;
+        }
+
+        .hero__grid {
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: 4rem;
+        }
+      }
+
+      @media (min-width: 960px) {
+        .nav {
+          display: flex;
+          align-items: center;
+          gap: 1.75rem;
+        }
+
+        .nav-toggle,
+        .nav-toggle-input,
+        .mobile-nav {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding-bottom: 5.5rem;
+        }
+
+        .sticky-cta {
+          position: fixed;
+          left: 1rem;
+          right: 1rem;
+          bottom: 1rem;
+          z-index: 60;
+          display: flex;
+          justify-content: center;
+        }
+
+        .sticky-cta .btn {
+          width: min(100%, 22rem);
+        }
+      }
+    </style>
   </head>
   <body>
+    <input
+      type="checkbox"
+      id="nav-toggle"
+      class="nav-toggle-input"
+      aria-controls="mobile-nav"
+    />
     <header class="site-header">
       <div class="container site-header__inner">
         <a class="logo" href="#top">Лена Разумная</a>
@@ -43,32 +368,32 @@
           <a href="#approach">Подход</a>
           <a href="#formats">Формат</a>
           <a href="#faq">FAQ</a>
+          <a href="#contacts">Контакты</a>
           <a class="btn btn--primary nav__cta" href="https://t.me/PLACEHOLDER" data-contact="telegram"
             >Записаться</a
           >
         </nav>
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="mobile-nav"
-          aria-label="Открыть меню"
-        >
+        <label class="nav-toggle" for="nav-toggle" aria-label="Открыть меню">
           <span></span>
           <span></span>
           <span></span>
-        </button>
+        </label>
       </div>
     </header>
 
     <nav id="mobile-nav" class="mobile-nav" aria-label="Мобильная навигация">
-      <a href="#about">Обо мне</a>
-      <a href="#topics">Запросы</a>
-      <a href="#approach">Подход</a>
-      <a href="#formats">Формат</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn btn--primary" href="https://t.me/PLACEHOLDER" data-contact="telegram"
-        >Записаться на консультацию</a
+      <a href="#about" onclick="document.getElementById('nav-toggle').checked=false">Обо мне</a>
+      <a href="#topics" onclick="document.getElementById('nav-toggle').checked=false">Запросы</a>
+      <a href="#approach" onclick="document.getElementById('nav-toggle').checked=false">Подход</a>
+      <a href="#formats" onclick="document.getElementById('nav-toggle').checked=false">Формат</a>
+      <a href="#faq" onclick="document.getElementById('nav-toggle').checked=false">FAQ</a>
+      <a href="#contacts" onclick="document.getElementById('nav-toggle').checked=false">Контакты</a>
+      <a
+        class="btn btn--primary"
+        href="https://t.me/PLACEHOLDER"
+        data-contact="telegram"
+        onclick="document.getElementById('nav-toggle').checked=false"
+        >Записаться</a
       >
     </nav>
 
@@ -89,7 +414,7 @@
             </p>
             <div class="hero__brand">
               <p class="hero__name">Лена Разумная</p>
-              <p class="hero__meta">Практикующий психосоматолог<br />Онлайн и офлайн</p>
+              <p class="hero__meta">Практикующий психосоматолог<br />Онлайн</p>
             </div>
             <div class="btn-group">
               <a class="btn btn--primary" href="https://t.me/PLACEHOLDER" data-contact="telegram"
@@ -103,7 +428,7 @@
             <div class="hero__deco-line" aria-hidden="true"></div>
             <div class="hero__frame">
               <img
-                src="./src/assets/images/hero-portrait.svg"
+                src="/images/hero-portrait.svg"
                 alt="Портрет Лены Разумной — спокойный образ в тёплых нейтральных тонах"
                 width="900"
                 height="1100"
@@ -120,11 +445,12 @@
           <div class="about__photo reveal">
             <div class="about__frame">
               <img
-                src="./src/assets/images/about-portrait.svg"
+                src="/images/about-portrait.svg"
                 alt="Лена Разумная в мягком естественном свете"
                 width="800"
                 height="1000"
                 loading="lazy"
+                decoding="async"
                 data-parallax
               />
             </div>
@@ -423,21 +749,16 @@
             <p class="section__eyebrow">Формат</p>
             <h2 id="formats-title" class="section__title">Формат, который подходит вам</h2>
           </div>
-          <div class="formats__grid">
+          <div class="formats__grid formats__grid--single">
             <article class="format-card reveal">
               <p class="format-card__label">Онлайн</p>
               <h3 class="format-card__title">ОНЛАЙН</h3>
               <p>Консультации из любой точки, где вам комфортно и спокойно.</p>
             </article>
-            <article class="format-card reveal reveal-delay-1">
-              <p class="format-card__label">Офлайн</p>
-              <h3 class="format-card__title">ОФЛАЙН</h3>
-              <p>Личная встреча в очном формате.</p>
-            </article>
           </div>
           <div class="formats__cta reveal">
             <a class="btn btn--primary" href="https://t.me/PLACEHOLDER" data-contact="telegram"
-              >Обсудить формат консультации</a
+              >Обсудить консультацию</a
             >
           </div>
         </div>
@@ -471,7 +792,7 @@
             </li>
             <li class="why__item reveal">
               <span class="why__dot" aria-hidden="true"></span>
-              <p>Возможность онлайн и офлайн формата</p>
+              <p>Удобный онлайн-формат из любой точки</p>
             </li>
             <li class="why__item reveal reveal-delay-1">
               <span class="why__dot" aria-hidden="true"></span>
@@ -484,11 +805,12 @@
       <section class="quote" aria-labelledby="quote-title">
         <div class="quote__bg" aria-hidden="true">
           <img
-            src="./src/assets/images/quote-bg.svg"
+            src="/images/quote-bg.svg"
             alt=""
             width="1600"
             height="900"
             loading="lazy"
+            decoding="async"
           />
           <div class="quote__overlay"></div>
         </div>
@@ -513,102 +835,62 @@
             <h2 id="faq-title" class="section__title">Частые вопросы</h2>
           </div>
           <div class="faq__list">
-            <div class="faq-item reveal">
-              <button
-                class="faq-item__trigger"
-                type="button"
-                aria-expanded="false"
-                aria-controls="faq-1"
-                id="faq-trigger-1"
-              >
+            <details class="faq-item reveal">
+              <summary class="faq-item__trigger">
                 Сколько длится консультация?
                 <span class="faq-item__icon" aria-hidden="true"></span>
-              </button>
-              <div class="faq-item__panel" id="faq-1" role="region" aria-labelledby="faq-trigger-1">
-                <div class="faq-item__content">
-                  <p>
-                    Продолжительность определяется индивидуально, в зависимости от состояния и
-                    процесса работы.
-                  </p>
-                </div>
+              </summary>
+              <div class="faq-item__content">
+                <p>
+                  Продолжительность определяется индивидуально, в зависимости от состояния и
+                  процесса работы.
+                </p>
               </div>
-            </div>
-            <div class="faq-item reveal">
-              <button
-                class="faq-item__trigger"
-                type="button"
-                aria-expanded="false"
-                aria-controls="faq-2"
-                id="faq-trigger-2"
-              >
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-item__trigger">
                 Можно ли проводить консультации онлайн?
                 <span class="faq-item__icon" aria-hidden="true"></span>
-              </button>
-              <div class="faq-item__panel" id="faq-2" role="region" aria-labelledby="faq-trigger-2">
-                <div class="faq-item__content">
-                  <p>Да, консультации доступны онлайн и офлайн.</p>
-                </div>
+              </summary>
+              <div class="faq-item__content">
+                <p>Да, консультации проходят онлайн.</p>
               </div>
-            </div>
-            <div class="faq-item reveal">
-              <button
-                class="faq-item__trigger"
-                type="button"
-                aria-expanded="false"
-                aria-controls="faq-3"
-                id="faq-trigger-3"
-              >
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-item__trigger">
                 С каким запросом можно обратиться?
                 <span class="faq-item__icon" aria-hidden="true"></span>
-              </button>
-              <div class="faq-item__panel" id="faq-3" role="region" aria-labelledby="faq-trigger-3">
-                <div class="faq-item__content">
-                  <p>
-                    Вы можете рассказать о том, что вас беспокоит, а вместе мы определим, на чём
-                    сосредоточить внимание в работе.
-                  </p>
-                </div>
+              </summary>
+              <div class="faq-item__content">
+                <p>
+                  Вы можете рассказать о том, что вас беспокоит, а вместе мы определим, на чём
+                  сосредоточить внимание в работе.
+                </p>
               </div>
-            </div>
-            <div class="faq-item reveal">
-              <button
-                class="faq-item__trigger"
-                type="button"
-                aria-expanded="false"
-                aria-controls="faq-4"
-                id="faq-trigger-4"
-              >
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-item__trigger">
                 Как проходит первая встреча?
                 <span class="faq-item__icon" aria-hidden="true"></span>
-              </button>
-              <div class="faq-item__panel" id="faq-4" role="region" aria-labelledby="faq-trigger-4">
-                <div class="faq-item__content">
-                  <p>
-                    Мы знакомимся, обсуждаем ваш запрос и определяем направление дальнейшей работы.
-                  </p>
-                </div>
+              </summary>
+              <div class="faq-item__content">
+                <p>
+                  Мы знакомимся, обсуждаем ваш запрос и определяем направление дальнейшей работы.
+                </p>
               </div>
-            </div>
-            <div class="faq-item reveal">
-              <button
-                class="faq-item__trigger"
-                type="button"
-                aria-expanded="false"
-                aria-controls="faq-5"
-                id="faq-trigger-5"
-              >
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-item__trigger">
                 Можно ли обратиться, если я не понимаю, что со мной происходит?
                 <span class="faq-item__icon" aria-hidden="true"></span>
-              </button>
-              <div class="faq-item__panel" id="faq-5" role="region" aria-labelledby="faq-trigger-5">
-                <div class="faq-item__content">
-                  <p>
-                    Да. Не обязательно заранее точно формулировать запрос. Можно начать с того, что
-                    вы сейчас чувствуете и что вас беспокоит.
-                  </p>
-                </div>
+              </summary>
+              <div class="faq-item__content">
+                <p>
+                  Да. Не обязательно заранее точно формулировать запрос. Можно начать с того, что
+                  вы сейчас чувствуете и что вас беспокоит.
+                </p>
               </div>
-            </div>
+            </details>
           </div>
         </div>
       </section>
@@ -631,13 +913,13 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer id="contacts" class="site-footer">
       <div class="container">
         <div class="site-footer__top">
           <div class="site-footer__brand">
             <p class="logo">Лена Разумная</p>
             <p class="site-footer__role">Психосоматолог • консультант</p>
-            <p class="site-footer__format">Онлайн и офлайн</p>
+            <p class="site-footer__format">Онлайн</p>
           </div>
           <div class="site-footer__links">
             <a href="https://t.me/PLACEHOLDER" data-contact="telegram">Telegram</a>
@@ -660,6 +942,6 @@
       >
     </div>
 
-    <script type="module" src="/src/main.ts"></script>
+    <!-- deferred-app -->
   </body>
 </html>

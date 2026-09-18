@@ -34,7 +34,19 @@ export const site = {
 
 Формы записи нет: кнопки открывают чат в Telegram.
 
-## Фотографии
+## JavaScript
+
+На первом экране приложение не грузится. Крошечный loader вешает слушатели и подключает `main.ts` только после первого взаимодействия (pointer / touch / key / scroll).
+
+Меню и FAQ работают без JS (checkbox + `<details>`).
+
+
+Шрифты самохостятся через `@fontsource` (без запроса к Google Fonts):
+
+- заголовки — Cormorant Garamond
+- текст — Manrope
+- рукописный акцент — Caveat
+
 
 Плейсхолдеры лежат в `src/assets/images/`:
 

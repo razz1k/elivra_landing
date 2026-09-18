@@ -2,17 +2,17 @@
   --color-ivory: #f7f3ee;
   --color-beige: #e9ded2;
   --color-sage: #a8b5a0;
-  --color-sage-deep: #8a9a82;
+  --color-sage-deep: #55614e;
   --color-graphite: #292827;
   --color-graphite-soft: #3d3c3a;
-  --color-terracotta: #c98f7b;
-  --color-terracotta-deep: #b57a66;
+  --color-terracotta: #855746;
+  --color-terracotta-deep: #7a4f40;
   --color-white: #fffcf9;
-  --color-muted: #6b6660;
+  --color-muted: #5a5650;
   --color-line: rgba(41, 40, 39, 0.12);
 
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
   --font-hand: 'Caveat', cursive;
 
   --radius-sm: 12px;

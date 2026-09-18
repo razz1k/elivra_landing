@@ -1,13 +1,6 @@
-import './styles/tokens.css'
-import './styles/base.css'
-import './styles/layout.css'
-import './styles/components.css'
-import './styles/sections.css'
-
+import './styles/entry.css'
 import { site } from './config'
-import { initFaq } from './modules/faq'
 import { initNav } from './modules/nav'
-import { initParallax } from './modules/parallax'
 import { initReveal } from './modules/reveal'
 
 function applyContactLinks(): void {
@@ -42,10 +35,14 @@ function applyContactLinks(): void {
   })
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function boot(): void {
   applyContactLinks()
   initNav()
-  initFaq()
   initReveal()
-  initParallax()
-})
+  void import('./styles/caveat.css')
+  void import('./modules/parallax').then((parallax) => {
+    parallax.initParallax()
+  })
+}
+
+boot()
