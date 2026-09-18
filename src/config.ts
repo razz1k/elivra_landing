@@ -1,6 +1,7 @@
 export const site = {
   name: 'Лена Разумная',
   role: 'психолог • консультант',
+  siteUrl: 'https://elivra.razz1k.com',
   telegramUrl: 'https://t.me/ElenaIvRa',
   reviewsTelegramUrl: 'https://t.me/ElenaRazum5',
   maxUrl: 'https://max.ru/u/f9LHodD0cOKPmfwP-uT_n7xVTxKUe7tFKNdQ042X3Qfa7Pl1y7bcANuthRI',
