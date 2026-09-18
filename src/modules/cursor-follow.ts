@@ -1,3 +1,7 @@
+const UPDATE_INTERVAL_MS = 200
+const WAVE_STEP_PX = 100
+const WAVE_MIN_INTERVAL_MS = 500
+
 export function initCursorFollow(): void {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
   if (window.matchMedia('(pointer: coarse)').matches) return
@@ -10,18 +14,17 @@ export function initCursorFollow(): void {
     const soundMeters = stage.querySelectorAll<HTMLElement>('[data-sound-meter]')
     if (!layers.length && !soundMeters.length) return
 
-    let frame = 0
-    let targetX = 0
-    let targetY = 0
-    let currentX = 0
-    let currentY = 0
+    let debounceTimer = 0
+    let rafId = 0
+    let lastUpdateAt = 0
+    let pendingX = 0
+    let pendingY = 0
+    let hasPending = false
     let lastPointerX: number | null = null
     let lastPointerY: number | null = null
     let travelBudget = 0
     let waveLevel = 0
     let lastWaveChangeAt = 0
-    const waveStepPx = 100
-    const waveMinIntervalMs = 500
 
     const applyWaveLevel = (level: number) => {
       soundMeters.forEach((meter) => {
@@ -35,53 +38,75 @@ export function initCursorFollow(): void {
 
     applyWaveLevel(0)
 
-    const render = () => {
-      currentX += (targetX - currentX) * 0.12
-      currentY += (targetY - currentY) * 0.12
+    const paint = () => {
+      rafId = 0
+      lastUpdateAt = performance.now()
+
+      if (!hasPending) return
+      hasPending = false
+
+      const rect = stage.getBoundingClientRect()
+      if (!rect.width || !rect.height) return
+
+      const offsetX = (pendingX - rect.left) / rect.width - 0.5
+      const offsetY = (pendingY - rect.top) / rect.height - 0.5
 
       layers.forEach((layer) => {
         const strength = Number(layer.dataset.followStrength) || 10
-        layer.style.transform = `translate3d(${currentX * strength}px, ${currentY * strength}px, 0)`
+        layer.style.transform = `translate3d(${offsetX * strength}px, ${offsetY * strength}px, 0)`
       })
 
-      if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
-        frame = requestAnimationFrame(render)
-      } else {
-        frame = 0
+      if (lastPointerX !== null && lastPointerY !== null) {
+        travelBudget += Math.hypot(pendingX - lastPointerX, pendingY - lastPointerY)
+
+        if (
+          travelBudget >= WAVE_STEP_PX &&
+          lastUpdateAt - lastWaveChangeAt >= WAVE_MIN_INTERVAL_MS
+        ) {
+          travelBudget = 0
+          lastWaveChangeAt = lastUpdateAt
+          waveLevel = (waveLevel + 1) % 3
+          applyWaveLevel(waveLevel)
+        } else if (travelBudget > WAVE_STEP_PX) {
+          travelBudget = WAVE_STEP_PX
+        }
       }
+
+      lastPointerX = pendingX
+      lastPointerY = pendingY
     }
 
-    const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(render)
+    const queueOnFrame = () => {
+      if (rafId) return
+      rafId = window.requestAnimationFrame(paint)
+    }
+
+    const scheduleUpdate = () => {
+      const elapsed = performance.now() - lastUpdateAt
+      if (elapsed >= UPDATE_INTERVAL_MS) {
+        if (debounceTimer) {
+          window.clearTimeout(debounceTimer)
+          debounceTimer = 0
+        }
+        queueOnFrame()
+        return
+      }
+
+      if (!debounceTimer) {
+        debounceTimer = window.setTimeout(() => {
+          debounceTimer = 0
+          queueOnFrame()
+        }, UPDATE_INTERVAL_MS - elapsed)
+      }
     }
 
     stage.addEventListener(
       'pointermove',
       (event) => {
-        const rect = stage.getBoundingClientRect()
-        if (!rect.width || !rect.height) return
-        targetX = (event.clientX - rect.left) / rect.width - 0.5
-        targetY = (event.clientY - rect.top) / rect.height - 0.5
-
-        if (lastPointerX !== null && lastPointerY !== null) {
-          const dx = event.clientX - lastPointerX
-          const dy = event.clientY - lastPointerY
-          travelBudget += Math.hypot(dx, dy)
-
-          const now = performance.now()
-          if (travelBudget >= waveStepPx && now - lastWaveChangeAt >= waveMinIntervalMs) {
-            travelBudget = 0
-            lastWaveChangeAt = now
-            waveLevel = (waveLevel + 1) % 3
-            applyWaveLevel(waveLevel)
-          } else if (travelBudget > waveStepPx) {
-            travelBudget = waveStepPx
-          }
-        }
-
-        lastPointerX = event.clientX
-        lastPointerY = event.clientY
-        schedule()
+        pendingX = event.clientX
+        pendingY = event.clientY
+        hasPending = true
+        scheduleUpdate()
       },
       { passive: true },
     )
@@ -89,15 +114,30 @@ export function initCursorFollow(): void {
     stage.addEventListener(
       'pointerleave',
       () => {
-        targetX = 0
-        targetY = 0
+        if (debounceTimer) {
+          window.clearTimeout(debounceTimer)
+          debounceTimer = 0
+        }
+        if (rafId) {
+          window.cancelAnimationFrame(rafId)
+          rafId = 0
+        }
+
+        hasPending = false
         lastPointerX = null
         lastPointerY = null
         travelBudget = 0
         waveLevel = 0
         lastWaveChangeAt = 0
+        lastUpdateAt = 0
         applyWaveLevel(0)
-        schedule()
+
+        rafId = window.requestAnimationFrame(() => {
+          rafId = 0
+          layers.forEach((layer) => {
+            layer.style.transform = 'translate3d(0, 0, 0)'
+          })
+        })
       },
       { passive: true },
     )
