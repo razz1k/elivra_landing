@@ -37,7 +37,21 @@
       rel="preload"
       as="font"
       type="font/woff2"
+      href="/fonts/cormorant-garamond-latin-500-normal.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
       href="/fonts/manrope-cyrillic-400-normal.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/manrope-latin-400-normal.woff2"
       crossorigin
     />
     <link
@@ -49,10 +63,17 @@
     />
     <link
       rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/manrope-latin-500-normal.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
       as="image"
       type="image/webp"
       imagesrcset="/images/hero-portrait-480.webp 480w, /images/hero-portrait-720.webp 720w, /images/hero-portrait-960.webp 960w"
-      imagesizes="(min-width: 900px) min(50vw, 560px), min(100vw, 720px)"
+      imagesizes="(min-width: 900px) min(50vw, 560px), calc(100vw - 2.5rem)"
       fetchpriority="high"
     />
     <style>
@@ -225,6 +246,9 @@
         font-weight: 500;
         letter-spacing: -0.01em;
         color: var(--color-graphite);
+        display: inline-flex;
+        align-items: center;
+        min-height: 2.75rem;
       }
 
       .nav {
@@ -268,8 +292,8 @@
         z-index: 90;
         display: flex;
         flex-direction: column;
-        gap: 1.25rem;
-        padding: 2rem;
+        gap: 0.35rem;
+        padding: 1.5rem 2rem 2rem;
         background: rgba(247, 243, 238, 0.98);
         transform: translateX(100%);
         visibility: hidden;
@@ -514,7 +538,13 @@
         .nav {
           display: flex;
           align-items: center;
-          gap: 1.75rem;
+          gap: 1.25rem;
+        }
+
+        .nav a:not(.btn) {
+          display: inline-flex;
+          align-items: center;
+          min-height: 2.75rem;
         }
 
         .nav-toggle,
@@ -625,12 +655,12 @@
                 <source
                   type="image/webp"
                   srcset="/images/hero-portrait-480.webp 480w, /images/hero-portrait-720.webp 720w, /images/hero-portrait-960.webp 960w"
-                  sizes="(min-width: 900px) min(50vw, 560px), min(100vw, 720px)"
+                  sizes="(min-width: 900px) min(50vw, 560px), calc(100vw - 2.5rem)"
                 />
                 <img
                   src="/images/hero-portrait.jpg"
                   srcset="/images/hero-portrait-480.jpg 480w, /images/hero-portrait-720.jpg 720w, /images/hero-portrait-960.jpg 960w"
-                  sizes="(min-width: 900px) min(50vw, 560px), min(100vw, 720px)"
+                  sizes="(min-width: 900px) min(50vw, 560px), calc(100vw - 2.5rem)"
                   alt="Портрет Лены Разумной — спокойный образ в тёплых нейтральных тонах"
                   width="962"
                   height="859"
@@ -651,12 +681,12 @@
                 <source
                   type="image/webp"
                   srcset="/images/about-portrait-480.webp 480w, /images/about-portrait-720.webp 720w, /images/about-portrait-960.webp 960w"
-                  sizes="(min-width: 900px) min(50vw, 560px), min(100vw, 720px)"
+                  sizes="(min-width: 900px) min(50vw, 560px), calc(100vw - 2.5rem)"
                 />
                 <img
                   src="/images/about-portrait.jpg"
                   srcset="/images/about-portrait-480.jpg 480w, /images/about-portrait-720.jpg 720w, /images/about-portrait-960.jpg 960w"
-                  sizes="(min-width: 900px) min(50vw, 560px), min(100vw, 720px)"
+                  sizes="(min-width: 900px) min(50vw, 560px), calc(100vw - 2.5rem)"
                   alt="Лена Разумная с сертификатами курса «Открытая психосоматика»"
                   width="960"
                   height="960"
