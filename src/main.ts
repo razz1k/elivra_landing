@@ -11,6 +11,9 @@ function applyContactLinks(): void {
       case 'telegram':
         link.href = site.telegramUrl
         break
+      case 'reviews-telegram':
+        link.href = site.reviewsTelegramUrl
+        break
       case 'max':
         link.href = site.maxUrl
         break
@@ -19,6 +22,9 @@ function applyContactLinks(): void {
         break
       case 'instagram':
         link.href = site.instagramUrl
+        break
+      case 'vk':
+        link.href = site.vkUrl
         break
       case 'phone':
         link.href = site.phoneHref
@@ -32,7 +38,14 @@ function applyContactLinks(): void {
         break
     }
 
-    if (key === 'telegram' || key === 'max' || key === 'whatsapp' || key === 'instagram') {
+    if (
+      key === 'telegram' ||
+      key === 'reviews-telegram' ||
+      key === 'max' ||
+      key === 'whatsapp' ||
+      key === 'instagram' ||
+      key === 'vk'
+    ) {
       link.target = '_blank'
       link.rel = 'noopener noreferrer'
     }

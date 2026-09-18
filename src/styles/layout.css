@@ -32,6 +32,12 @@
   font-size: 1.125rem;
 }
 
+.section__lead a {
+  color: var(--color-terracotta-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .section__header {
   margin-bottom: var(--space-xl);
   max-width: 40rem;

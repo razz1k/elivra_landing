@@ -649,6 +649,47 @@ body:has(.nav-toggle-input:checked) .mobile-nav {
   }
 }
 
+/* Reviews */
+.reviews__list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 800px) {
+  .reviews__list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem 2.5rem;
+  }
+}
+
+.review {
+  margin: 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--color-sage);
+}
+
+.review blockquote {
+  margin: 0;
+}
+
+.review blockquote p {
+  color: var(--color-graphite-soft);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.review__author {
+  margin-top: 0.85rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.reviews__more {
+  margin-top: var(--space-xl);
+}
+
 /* Quote */
 .quote {
   position: relative;
