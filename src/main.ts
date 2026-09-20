@@ -3,6 +3,7 @@ import { site } from './config'
 import { initNav } from './modules/nav'
 import { initReveal } from './modules/reveal'
 import { initStatsCount } from './modules/stats-count'
+import { initContactModal } from './modules/contact-modal'
 
 function applyContactLinks(): void {
   document.querySelectorAll<HTMLAnchorElement>('[data-contact]').forEach((link) => {
@@ -57,6 +58,7 @@ function boot(): void {
   initNav()
   initReveal()
   initStatsCount()
+  initContactModal()
   void import('./styles/caveat.css')
   void import('./modules/cursor-follow').then((module) => {
     module.initCursorFollow()

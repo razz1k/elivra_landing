@@ -726,9 +726,7 @@
           <a href="#reviews">Отзывы</a>
           <a href="#faq">FAQ</a>
           <a href="#contacts">Контакты</a>
-          <a class="btn btn--primary nav__cta" href="https://t.me/PLACEHOLDER" data-contact="telegram"
-            >Записаться</a
-          >
+          <a class="btn btn--primary nav__cta" href="#" data-cta-modal data-contact="telegram">Записаться</a>
         </nav>
         <label class="nav-toggle" for="nav-toggle" aria-label="Открыть меню">
           <span></span>
@@ -748,12 +746,12 @@
       <a href="#contacts" onclick="document.getElementById('nav-toggle').checked=false">Контакты</a>
       <a
         class="btn btn--primary"
-        href="https://t.me/PLACEHOLDER"
+        href="#"
+        data-cta-modal
         data-contact="telegram"
         onclick="document.getElementById('nav-toggle').checked=false"
-        >Записаться</a
-      >
-    </nav>
+        >Записаться</a>
+      </nav>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
@@ -774,9 +772,7 @@
               <p class="hero__meta">Практикующий психолог<br />Онлайн</p>
             </div>
             <div class="btn-group">
-              <a class="btn btn--primary" href="https://t.me/PLACEHOLDER" data-contact="telegram"
-                >Записаться на консультацию</a
-              >
+              <a class="btn btn--primary" href="#" data-cta-modal data-contact="telegram">Записаться на консультацию</a>
               <a class="btn btn--secondary" href="#about">Узнать обо мне</a>
             </div>
           </div>
@@ -1225,9 +1221,7 @@
             </div>
           </div>
           <div class="formats__cta reveal">
-            <a class="btn btn--primary" href="https://t.me/PLACEHOLDER" data-contact="telegram"
-              >Обсудить консультацию</a
-            >
+            <a class="btn btn--primary" href="#" data-cta-modal data-contact="telegram">Обсудить консультацию</a>
           </div>
         </div>
       </section>
@@ -1277,9 +1271,7 @@
             <h2 id="reviews-title" class="section__title">Что говорят после встреч</h2>
             <p class="section__lead">
               Отзывы клиентов.<br/>Больше отзывов — в
-              <a href="https://t.me/+38vMkPnVHgc2ZWNi" data-contact="reviews-telegram"
-                >Telegram-канале</a
-              >.
+              <a href="https://t.me/+38vMkPnVHgc2ZWNi" data-contact="reviews-telegram">Telegram-канале</a>.
             </p>
           </div>
           <div class="reviews__list">
@@ -1373,8 +1365,7 @@
               class="btn btn--secondary"
               href="https://t.me/+38vMkPnVHgc2ZWNi"
               data-contact="reviews-telegram"
-              >Читать отзывы в Telegram</a
-            >
+              >Читать отзывы в Telegram</a>
           </p>
         </div>
       </section>
@@ -1399,9 +1390,7 @@
             </p>
           </blockquote>
           <p class="quote__sign">Я буду рядом в этом процессе.</p>
-          <a class="btn btn--primary" href="https://t.me/PLACEHOLDER" data-contact="telegram"
-            >Записаться на консультацию</a
-          >
+          <a class="btn btn--primary" href="#" data-cta-modal data-contact="telegram">Записаться на консультацию</a>
         </div>
       </section>
 
@@ -1479,12 +1468,8 @@
             Расскажите, что сейчас происходит. Вместе посмотрим, чем я могу быть вам полезна.
           </p>
           <div class="btn-group">
-            <a class="btn btn--primary" href="https://t.me/PLACEHOLDER" data-contact="telegram"
-              >Записаться на консультацию</a
-            >
-            <a class="btn btn--secondary" href="https://t.me/PLACEHOLDER" data-contact="telegram"
-              >Задать вопрос</a
-            >
+            <a class="btn btn--primary" href="#" data-cta-modal data-contact="telegram">Записаться на консультацию</a>
+            <a class="btn btn--secondary" href="#" data-cta-modal data-contact="telegram">Задать вопрос</a>
           </div>
         </div>
       </section>
@@ -1512,9 +1497,7 @@
           <p>© 2026 Лена Разумная</p>
           <p class="site-footer__credit">
             Created by
-            <a href="https://razz1k.github.io/" target="_blank" rel="noopener noreferrer"
-              >razz1k</a
-            >
+            <a href="https://razz1k.github.io/" target="_blank" rel="noopener noreferrer">razz1k</a>
           </p>
           <a href="/privacy.html">Политика конфиденциальности</a>
         </div>
@@ -1522,9 +1505,26 @@
     </footer>
 
     <div class="sticky-cta">
-      <a class="btn btn--primary" href="https://t.me/PLACEHOLDER" data-contact="telegram"
-        >Записаться</a
-      >
+      <a class="btn btn--primary" href="#" data-cta-modal data-contact="telegram">Записаться</a>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal" id="contact-modal" aria-hidden="true" role="dialog" aria-labelledby="contact-modal-title">
+      <div class="contact-modal__overlay" tabindex="-1"></div>
+      <div class="contact-modal__content" role="document">
+        <button class="contact-modal__close" aria-label="Закрыть" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h2 id="contact-modal-title" class="contact-modal__title">Выберите вариант удобный для вас</h2>
+        <div class="contact-modal__grid">
+          <a href="https://t.me/ElenaIvRa" class="contact-modal__link" data-contact="telegram" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href="https://wa.me/79054542723" class="contact-modal__link" data-contact="whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="https://instagram.com/1umnaya_lena" class="contact-modal__link" data-contact="instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://vk.ru/elenaivra" class="contact-modal__link" data-contact="vk" target="_blank" rel="noopener noreferrer">VK</a>
+          <a href="tel:+79934582723" class="contact-modal__link" data-contact="phone">+7 (993) 458-27-23</a>
+          <a href="mailto:elivra@yandex.ru" class="contact-modal__link" data-contact="email">elivra@yandex.ru</a>
+        </div>
+      </div>
     </div>
 
     <!-- deferred-app -->
